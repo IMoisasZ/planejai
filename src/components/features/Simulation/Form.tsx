@@ -1,7 +1,5 @@
+import { StepProgress } from './Progress';
+
 export function SimulationForm() {
-	return (
-		<div>
-			<h1>Formuláro de simulação</h1>
-		</div>
-	);
+	return <StepProgress currentStep={1} totalSteps={2} />;
 }
