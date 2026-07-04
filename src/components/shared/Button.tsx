@@ -11,7 +11,7 @@ const baseClasses =
 
 const variantClasses = {
 	primary: 'bg-primary text-primary-foreground font-semibold rounded-xl',
-	secondary: 'bg-secondary-button border border-boder rounded-3x1',
+	secondary: 'bg-secondary-button border border-boder rounded-3xl',
 	ghost: 'rounded-lg text-foreground',
 };
 
