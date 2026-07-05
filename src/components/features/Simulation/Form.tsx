@@ -1,13 +1,38 @@
 import { simulationFormSteps } from '@/data/simulation';
+import { useState } from 'react';
 import { FormStep } from './FormStep';
 import { StepProgress } from './Progress';
 
 export function SimulationForm() {
-	const currentStep = simulationFormSteps[0]; // Example: Get the first step from the simulationSteps array
+	const [currentStepIndex, setCurrentStepIndex] = useState(0);
+	const totalSteps = simulationFormSteps.length;
+	const currentStep = simulationFormSteps[currentStepIndex]; // Example: Get the current step based on the index
+
+	const handleNextStep = () => {
+		if (currentStepIndex + 1 > totalSteps - 1) {
+			return;
+		}
+		setCurrentStepIndex((prev) => prev + 1);
+	};
+
+	const handlePreviousStep = () => {
+		if (currentStepIndex === 0) {
+			return;
+		}
+
+		setCurrentStepIndex((prev) => prev - 1);
+	};
+
 	return (
 		<>
-			<StepProgress currentStep={1} totalSteps={2} />
-			<FormStep key={currentStep.id} {...currentStep} />
+			<StepProgress currentStep={currentStepIndex + 1} totalSteps={totalSteps} />
+			<FormStep
+				key={currentStep.id}
+				{...currentStep}
+				onBack={handlePreviousStep}
+				onNext={handleNextStep}
+				hideBAckButton={currentStepIndex === 0}
+			/>
 		</>
 	);
 }
