@@ -1,7 +1,8 @@
 import { Card } from '@/components/features/SimulationResults/Card';
 import { PageHero } from '@/components/shared/PageHero';
 import type { SimulationFormData } from '@/data/simulation';
-import { CalendarClock, Goal } from 'lucide-react';
+import { calcMothlySavings } from '@/utils/simulation';
+import { CalendarClock, CreditCardIcon, Goal, Landmark, PiggyBank, Wallet } from 'lucide-react';
 
 const mock: SimulationFormData = {
 	income: 'R$ 5.000,00',
@@ -14,6 +15,7 @@ const mock: SimulationFormData = {
 
 export function SimulationResultPage() {
 	const data: SimulationFormData = mock;
+	const monthlySavings = calcMothlySavings(data);
 	return (
 		<main className="mx-auto max-w-6xl px-4 py-10 sm:py-14">
 			<PageHero
@@ -33,6 +35,38 @@ export function SimulationResultPage() {
 					value={`${data.goalDeadline} meses`}
 					subtitle={'Prazo para atingir a meta'}
 				/>
+				<Card
+					variant="primary"
+					icon={PiggyBank}
+					label="Economia mensal"
+					value={`R$ ${monthlySavings.toLocaleString('pt-Br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
+					subtitle={'Prazo para atingir a meta'}
+				/>
+			</div>
+			<div className="grid gap-6 lg:grid-cols-3">
+				<div className="bg-card order-2 rounded-2xl p-6 shadow-[4px_4px_18_px_0px_grba(0,0,0,0.2)] lg:order-1 lg:col-span-2">
+					Painel de Insigths
+				</div>
+				<div className="order-1 flex flex-col gap-6 lg:order-2">
+					<Card
+						icon={Wallet}
+						label="Renda mensal"
+						value={data.income}
+						subtitle={'Renda total bruta por mês'}
+					/>
+					<Card
+						icon={CreditCardIcon}
+						label="Custos fixos de vida"
+						value={data.expenses}
+						subtitle={'Gastos essenciais por mês'}
+					/>
+					<Card
+						icon={Landmark}
+						label="Dividas / Parcelas"
+						value={data.debts}
+						subtitle={'Valor comprometido em parcelas/depósito'}
+					/>
+				</div>
 			</div>
 		</main>
 	);
