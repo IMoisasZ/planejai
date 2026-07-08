@@ -4,7 +4,7 @@ import { calcMothlySavings } from '@/utils/simulation';
 import type { SimulationRecord } from '@/utils/simulation';
 
 const RESPONSE_SCHEMA = `{
-    "feasbility": {
+    "feasibility": {
         "status": "viable" | "needs_adjustment" | "unfeasible",
         "content: "<Análise objetiva sobre a meta é atingivel no prazo com o valor disponivel. Mencione os numeros relevantes.>"
     },
@@ -26,10 +26,10 @@ const RESPONSE_SCHEMA = `{
 }`;
 
 export function buildAIPrompt(simulation: SimulationRecord) {
-	const { income, expenses, debts, goalName, goalAmont, goalDeadline } = simulation;
+	const { income, expenses, debts, goalName, goalAmount, goalDeadline } = simulation;
 
 	const monthlySavings = calcMothlySavings(simulation);
-	const monthlySavingsNeeded = parseCurrency(goalAmont) / parseInt(goalDeadline);
+	const monthlySavingsNeeded = parseCurrency(goalAmount) / parseInt(goalDeadline);
 
 	return `Você é um educador financerio especializado em finanças pessoais.
     Analise os dados abaixo e gere um diagnostico financeiro personalizado com linguagem clara, diadtica e encorajadora
@@ -42,7 +42,7 @@ export function buildAIPrompt(simulation: SimulationRecord) {
     - Dívidas e parcelas mensais: ${debts}
     - Valor disponivel por mês: ${monthlySavings} reais
     - Meta: ${goalName}
-    - Custo da meta: ${goalAmont}
+    - Custo da meta: ${goalAmount}
     - Prazo desejado: ${goalDeadline} meses
     - Economia mensalnecessária para atingir a meta no prazo: ${monthlySavingsNeeded} reais
     - Saldo após reserva para meta: ${monthlySavings - monthlySavingsNeeded} reais
