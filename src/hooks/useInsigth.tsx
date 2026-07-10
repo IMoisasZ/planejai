@@ -24,7 +24,6 @@ export const useInsight = (id: string) => {
 	const fetchInsigth = useCallback(
 		async (simulationId: string) => {
 			const simulation = getFormData(simulationId);
-			console.log('Dados da simulação encontrados:', simulation); // 👈 Adicione isso
 
 			if (!simulation) {
 				setError('Siulação não encontrada.');

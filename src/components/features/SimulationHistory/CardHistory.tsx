@@ -36,23 +36,17 @@ export function CardHistory({
 		<>
 			{icon ? (
 				<div className="mb-3 flex items-center justify-between gap-2">
-					<Goal size={32} className={styles.accent} />
+					<Goal size={40} className={styles.accent} />
 					<div>
-						<h3
-							className={['text-xs font-semibold uppercase tracking-widest', styles.accent].join(
-								' '
-							)}
-						>
-							{label}
-						</h3>
-						<p className={['text-3xl font-semibold', styles.subtitle].join(' ')}>{value}</p>
+						<h3 className={['text-lg font-bold tracking-widest'].join(' ')}>{label}</h3>
+						<p className={['text-md font-semibold', styles.subtitle].join(' ')}>{value}</p>
 					</div>
 				</div>
 			) : (
 				<>
 					<div>
-						<p className={['text-3xl font-semibold', styles.subtitle].join(' ')}>{subtitle}</p>
-						<p className={['mt-1 text-sm', styles.value].join(' ')}>{value}</p>
+						<p className={['text-xl font-normal', styles.subtitle].join(' ')}>{subtitle}</p>
+						<p className={['text-md font-semibold tracking-widest'].join(' ')}>{value}</p>
 					</div>
 				</>
 			)}
