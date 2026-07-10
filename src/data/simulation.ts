@@ -30,7 +30,7 @@ export const simulationFormSteps = [
 		id: 'debts',
 		icon: Landmark,
 		title: 'Dívidas/Parcelas',
-		question: 'Você tem algum valor comprometido co parcelas ou empréstimos mensalmente?',
+		question: 'Você tem algum valor comprometido com parcelas ou empréstimos mensalmente?',
 		inputProps: {
 			placeholder: 'ex.: 500,00',
 			prefix: 'R$',
